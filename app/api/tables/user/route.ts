@@ -6,10 +6,9 @@ export async function GET(request: Request) {
     const result =
       await sql`
       CREATE TABLE users (
-        id int AUTO_INCREMENT NOT NULL,
-        username varchar(256),
-        email varchar(256),
-        CONSTRAINT users_id PRIMARY KEY(id)
+        id SERIAL PRIMARY KEY,
+        username varchar(255) NOT NULL,
+        email varchar(255) UNIQUE NOT NULL,
     );
       `;
     return NextResponse.json({ result }, { status: 200 });
